@@ -14,7 +14,7 @@ class UserController extends Controller
             $credentials = $request->only('email', 'password');
             if(!$token = JWTAuth::attempt($credentials)) {
                 return response()->json([
-                    'error' => 'Invalid credentials'
+                    'error' => 'Invalid login or password'
                 ], 401);
             }
         } catch(JWTException $e) {

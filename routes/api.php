@@ -24,6 +24,11 @@ Route::group([
     'middleware' => ['auth.jwt']
 ], function () {
     Route::resource('/categories', 'CategoriesController');
+    // Route::put('/post/{post_id}/edit', 'PostsControler@update');
+    // Route::put('/post/{post_id}/edit', [
+    //     'uses' => 'PostsController@editPost',
+    //     'as' => 'posts.editPost'
+    // ]);
 });
 
 
@@ -31,6 +36,11 @@ Route::get('/posts/{category_id}/category', [
     'uses' => 'PostsController@getPostsByCategory',
     'as' => 'posts.getPostsByCategory'
 ]);
+Route::put('/post/{post_id}/edit', [
+    'uses' => 'PostsController@editPost',
+    'as' => 'posts.editPost'
+]);
+
 
 
 Route::post('/user/signin', [

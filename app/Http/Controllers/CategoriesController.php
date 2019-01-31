@@ -17,19 +17,19 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-//        try {
-//            if (!$user = JWTAuth::parseToken()->authenticate()) {
-//                return response()->json([
-//                    'error' => 'Invalid credentials'
-//                ], 401);
-//            }
-//        } catch(JWTException $e) {
-//            return response()->json([
-//                'error' => 'Missing token'
-//            ], 500);
-//        }
+       try {
+           if (!$user = JWTAuth::parseToken()->authenticate()) {
+               return response()->json([
+                   'error' => 'Invalid credentials'
+               ], 401);
+           }
+       } catch(JWTException $e) {
+           return response()->json([
+               'error' => 'Missing token'
+           ], 500);
+       }
 
-        return Category::orderBy('id', 'desc')->get();
+        return Category::get();
     }
     
     public function setData() {

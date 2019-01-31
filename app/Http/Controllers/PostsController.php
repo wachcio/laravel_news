@@ -15,7 +15,8 @@ class PostsController extends Controller
      */
     public function index()
     {
-        return Post::with('category')->get();
+        // return Post::orderBy('id', 'desc')->get();
+        return Post::get();
     }
 
 
@@ -24,6 +25,7 @@ class PostsController extends Controller
         return Post::with('category')
             ->where('category_id', '=', $category_id)->get();
     }
+ 
 
     /**
      * Show the form for creating a new resource.
@@ -99,6 +101,8 @@ class PostsController extends Controller
         $post->update($request->all());
 
         return ['status' => 0, 'id' => $post->id];
+
+        
     }
 
     /**
@@ -107,8 +111,9 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return ['status' => 0];
     }
 }
